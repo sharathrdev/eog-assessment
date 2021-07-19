@@ -23,16 +23,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const getNewMeasurementData = state => state.metricMeasurements.getMultipleMeasurements;
 
+const CardStats = props => {
+  const classes = useStyles();
+  const getNewMeasurementDatas = useSelector(getNewMeasurementData);
+  let list = getNewMeasurementDatas.getMultipleMeasurements;
+  let displayUnit = '';
+  for (let index = 0; index < list.length; index++) {
+    let data = list[index].measurements.slice(-1)[0];
+    if (props.value === data.metric) {
+      displayUnit = data;
+    }
+  }
 
   return (
     <Card className={classes.root} style={{ backgroundColor: `${arrColors[props.index]}` }}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            Units
+            {`${displayUnit.value}  ${displayUnit.unit}`}
           </Typography>
-          <Typography variant="subtitle1">Heading</Typography>
+          <Typography variant="subtitle1">{displayUnit.metric}</Typography>
         </CardContent>
       </div>
     </Card>
