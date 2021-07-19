@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
     width: '45%',
     marginBottom: '10px',
+    float: 'right'
   },
   chartContainer: {
     padding: '10px',
